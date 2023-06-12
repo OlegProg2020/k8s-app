@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/k8s_db}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:admin1234}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    generate-ddl: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  main:
+    banner-mode: off
+logging:
+  file:
+    name: application.log
